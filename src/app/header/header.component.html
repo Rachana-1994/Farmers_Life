@@ -36,10 +36,12 @@
       </form> -->
       <form class="d-flex">
         <label class="p-2" for="date">Month</label>
+        <div class="row">
           <div class="col-sm-8 form-group">
             <input [(ngModel)]="modelDate" autocomplete="off" class="form-control" name="date"
                    bsDatepicker [bsConfig]="{dateInputFormat: 'MM/YYYY'}" (onShown)="onOpenCalendar($event)">
           </div>
+        </div>
       </form>
     </div>
   </div>

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Farmer's Life</a>
+    <a class="navbar-brand" routerLink="/">Farmer's Life</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -36,12 +36,10 @@
       </form> -->
       <form class="d-flex">
         <label class="p-2" for="date">Month</label>
-        <div class="row">
           <div class="col-sm-8 form-group">
             <input [(ngModel)]="modelDate" autocomplete="off" class="form-control" name="date"
                    bsDatepicker [bsConfig]="{dateInputFormat: 'MM/YYYY'}" (onShown)="onOpenCalendar($event)">
           </div>
-        </div>
       </form>
     </div>
   </div>

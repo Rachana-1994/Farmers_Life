@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import {Task} from './task.model';
+import { TaskService } from '../task.service';
 
 @Component({
   selector: 'app-task-manager',
@@ -8,12 +9,15 @@ import {Task} from './task.model';
   styleUrls: ['./task-manager.component.css']
 })
 export class TaskManagerComponent implements OnInit {
-  taskArray: Task[] = [new Task(false,'Fertilizer spray', false)];
+  taskArray: Task[] = [new Task(false,'Fertilizer spray', false, new Date())];
   // taskArray: Task[] = []; //empty task list
 
-  constructor() { }
+  constructor(private taskService: TaskService) {}
 
   ngOnInit() {
+    this.taskService.monthUpdate.subscribe((date:string)=>{
+      console.log(date);
+    })
   }
 
   onSubmit(form: NgForm){
@@ -21,7 +25,8 @@ export class TaskManagerComponent implements OnInit {
     this.taskArray.push({
       isCompleted:false,
       taskName: form.controls['task'].value,
-      isEditable: false
+      isEditable: false,
+      month: new Date()
     })
     form.reset();
   }

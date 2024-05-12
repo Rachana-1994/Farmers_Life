@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { TaskService } from '../task.service';
 
 @Component({
   selector: 'app-header',
@@ -7,12 +8,12 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  modelDate='';
-  constructor(private datePipe:DatePipe) { }
+  modelDate;
+  constructor(private datePipe:DatePipe, private taskService:TaskService) {
+    this.modelDate = this.datePipe.transform(new Date(),'MM/yyyy');
+   }
 
   ngOnInit() {
-    const modelDate = this.datePipe.transform(new Date(),'MM/yyyy');
-    this.modelDate = modelDate;
   }
 
   onOpenCalendar(container: any) {
@@ -20,5 +21,10 @@ export class HeaderComponent implements OnInit {
       container._store.dispatch(container._actions.select(event.date));
     };     
     container.setViewMode('month');
+  }
+
+  onChange(date:Date){
+    this.modelDate = this.datePipe.transform(date,'MM/yyyy');
+    this.taskService.monthUpdate.next(this.modelDate);
   }
 }

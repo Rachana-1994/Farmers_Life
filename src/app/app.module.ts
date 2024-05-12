@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { setTheme } from 'ngx-bootstrap/utils';
 import { DatePipe } from '@angular/common';
+import { TaskService } from './task.service';
 setTheme('bs5'); // or 'bs4'
 
 @NgModule({
@@ -27,7 +28,7 @@ setTheme('bs5'); // or 'bs4'
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot()
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
